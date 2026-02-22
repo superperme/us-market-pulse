@@ -78,25 +78,41 @@
                 </div>
             </div>
 
-            <div class="space-y-6">
-                <div class="module-card p-6 space-y-4 border-l-4 border-blue-600">
-                    <h3 class="text-[10px] font-black text-blue-400 uppercase tracking-widest">AI & Semiconductors</h3>
-                    <div class="p-3 bg-blue-500/5 rounded-lg border border-blue-500/10">
-                        <p class="text-[10px] text-slate-400 leading-relaxed italic">
-                            2月20日收盘：半导体指数（SOXX）依然稳守5日线，结构性牛市并未因周末临近而衰减。
-                        </p>
-                    </div>
+            <div class="space-y-6" id="insights-container">
                 </div>
-                <div class="module-card p-6 space-y-4 border-l-4 border-pink-600">
-                    <h3 class="text-[10px] font-black text-pink-400 uppercase tracking-widest">Aerospace / 航天</h3>
-                    <div class="p-3 bg-pink-500/5 rounded-lg border border-pink-500/10">
-                        <p class="text-[10px] text-slate-400 leading-relaxed italic">
-                            商业航天板块尾盘出现资金抢筹，值得下周一开盘密切关注。
-                        </p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
+
+    <script>
+        /* START_INSIGHTS */
+        const marketInsights = [
+            {
+                title: "INITIALIZING",
+                type: "persistent",
+                color: "#3b82f6",
+                content: "系统正在等待第一次自动化抓取..."
+            }
+        ];
+        /* END_INSIGHTS */
+
+        const container = document.getElementById('insights-container');
+        if (container) {
+            marketInsights.forEach(insight => {
+                const card = `
+                    <div class="module-card p-6 space-y-4 border-l-4" style="border-color: ${insight.color}">
+                        <div class="flex items-center">
+                            <h3 class="text-[10px] font-black uppercase tracking-widest" style="color: ${insight.color}">${insight.title}</h3>
+                        </div>
+                        <div class="p-3 bg-white/5 rounded-lg border border-white/5">
+                            <p class="text-[11px] text-slate-400 leading-relaxed italic">
+                                ${insight.content}
+                            </p>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+    </script>
 </body>
 </html>
