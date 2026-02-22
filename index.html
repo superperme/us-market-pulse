@@ -3,33 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Market Pulse | 赛博行情终端</title>
+    <title>Market Pulse | 周五复盘终端</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background: #020617; color: #f8fafc; font-family: ui-sans-serif, system-ui, sans-serif; }
         .module-card { background: #0f172a; border: 1px solid #1e293b; border-radius: 16px; overflow: hidden; }
-        /* 强制给容器一个高度，防止脚本加载前塌陷 */
-        .widget-box { height: 500px; width: 100%; }
+        .widget-box { height: 500px; width: 100%; position: relative; }
+        /* 增加一个简单的加载动画提示 */
+        .loading-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #334155; font-size: 10px; z-index: 0; }
     </style>
 </head>
 <body class="p-4 md:p-10">
     <div class="max-w-7xl mx-auto space-y-8">
-        <header class="flex justify-between items-center border-b border-slate-800 pb-6">
+        <header class="flex justify-between items-end border-b border-slate-800 pb-6">
             <div>
                 <h1 class="text-3xl font-black italic tracking-tighter text-blue-500">MARKET PULSE <span class="text-white">PRO</span></h1>
-                <p class="text-[10px] text-slate-500 uppercase tracking-[0.4em] mt-1">AI & Tech Sector Intelligence Terminal</p>
+                <p class="text-[10px] text-slate-500 uppercase tracking-[0.4em] mt-1">Weekend Review Mode / 周末复盘模式</p>
             </div>
             <div class="text-right">
-                <span class="px-3 py-1 bg-blue-500/10 text-blue-400 text-[10px] font-bold rounded-full border border-blue-500/20">● DATA STREAMING</span>
+                <div class="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Snapshot Date / 数据锚点</div>
+                <div class="text-xl font-black text-white">2026-02-20 <span class="text-xs font-normal text-slate-500">(Fri Close)</span></div>
             </div>
         </header>
 
         <div class="module-card shadow-2xl">
-            <div class="px-6 py-4 bg-slate-900/50 border-b border-slate-800">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-slate-400">Sector Architecture / 板块热力图</h2>
+            <div class="px-6 py-4 bg-slate-900/50 border-b border-slate-800 flex justify-between items-center">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-slate-400">S&P 500 Friday Close / 标普500收盘结构</h2>
+                <span class="text-[9px] text-green-400 px-2 py-0.5 rounded border border-green-500/20">WEEKLY FINALE</span>
             </div>
             <div class="widget-box">
-                <div class="tradingview-widget-container">
+                <div class="loading-text uppercase tracking-widest text-center">正在同步美股数据...<br>若长时间空白请检查网络</div>
+                <div class="tradingview-widget-container" style="height: 100%; width: 100%;">
                     <div class="tradingview-widget-container__widget"></div>
                     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-heatmap.js" async>
                     {
@@ -37,7 +41,8 @@
                       "colorTheme": "dark",
                       "isTransparent": true,
                       "width": "100%",
-                      "height": "100%"
+                      "height": "100%",
+                      "defaultColumn": "performance" 
                     }
                     </script>
                 </div>
@@ -47,7 +52,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <div class="lg:col-span-3 module-card">
                 <div class="px-6 py-4 bg-slate-900/50 border-b border-slate-800">
-                    <h2 class="text-xs font-bold uppercase tracking-widest text-slate-400">Momentum Scanner / 动能筛选</h2>
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-slate-400">Top Movers (Feb 20) / 周五动能排行</h2>
                 </div>
                 <div class="widget-box" style="height: 600px;">
                     <div class="tradingview-widget-container">
@@ -70,19 +75,19 @@
             </div>
 
             <div class="space-y-6">
-                <div class="module-card p-6 space-y-4">
-                    <h3 class="text-[10px] font-black text-blue-400 uppercase tracking-widest border-b border-slate-800 pb-2">持续性变化 (Persistent)</h3>
+                <div class="module-card p-6 space-y-4 border-l-4 border-blue-500">
+                    <h3 class="text-[10px] font-black text-blue-400 uppercase tracking-widest">周五持续性热点</h3>
                     <div class="p-3 bg-blue-500/5 rounded-lg border border-blue-500/10">
-                        <p class="text-[11px] font-bold text-blue-200">AI 半导体链</p>
-                        <p class="text-[10px] text-slate-500 mt-1 italic">连续 5 日站稳均线，资金呈非线性流入。</p>
+                        <p class="text-[11px] font-bold text-blue-200">AI & Semiconductors</p>
+                        <p class="text-[10px] text-slate-500 mt-1 italic">2月20日收盘：半导体指数（SOXX）依然稳守5日线，结构性牛市并未因周末临近而衰减。</p>
                     </div>
                 </div>
 
-                <div class="module-card p-6 space-y-4">
-                    <h3 class="text-[10px] font-black text-pink-400 uppercase tracking-widest border-b border-slate-800 pb-2">新变动观察 (Emerging)</h3>
+                <div class="module-card p-6 space-y-4 border-l-4 border-pink-500">
+                    <h3 class="text-[10px] font-black text-pink-400 uppercase tracking-widest">周五新变动</h3>
                     <div class="p-3 bg-pink-500/5 rounded-lg border border-pink-500/10">
-                        <p class="text-[11px] font-bold text-pink-200">商业航天/卫星</p>
-                        <p class="text-[10px] text-slate-500 mt-1 italic">昨日出现底部放量，空头筹码开始松动。</p>
+                        <p class="text-[11px] font-bold text-pink-200">Aerospace / 航天</p>
+                        <p class="text-[10px] text-slate-500 mt-1 italic">由于周五盘中出现行业利好传闻，商业航天板块尾盘出现资金抢筹，值得周一开盘关注。</p>
                     </div>
                 </div>
             </div>
