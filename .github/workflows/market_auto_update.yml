@@ -1,0 +1,30 @@
+name: Daily Market Pulse Update
+
+on:
+  schedule:
+    # 每天美股收盘后（北京时间早上 6:30）执行
+    - cron: '30 22 * * *'
+  workflow_dispatch: # 允许你手动点击运行
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Run Update Script
+        run: python update_pulse.py
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "Market-Pulse-Bot"
+          git config --global user.email "bot@github.com"
+          git add index.html
+          git commit -m "Auto-update market insights [skip ci]"
+          git push
